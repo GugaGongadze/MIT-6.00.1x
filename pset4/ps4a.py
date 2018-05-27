@@ -198,12 +198,12 @@ def calculateHandlen(hand):
     """
 
     # Long version
-    res = 0
-    for letter in hand:
-        if hand.get(letter, 0) != 0:
-            res += hand.get(letter, 0)
+    # res = 0
+    # for letter in hand:
+    #     if hand.get(letter, 0) != 0:
+    #         res += hand.get(letter, 0)
 
-    return res
+    # return res
 
     # Short version
     return sum(hand.values())
@@ -231,9 +231,8 @@ def playHand(hand, wordList, n):
       n: integer (HAND_SIZE; i.e., hand size required for additional points)
 
     """
-    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
-
+    score = 0
     # As long as there are still letters left in the hand:
 
         # Display the hand
