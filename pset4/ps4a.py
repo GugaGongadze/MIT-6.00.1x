@@ -246,13 +246,13 @@ def playHand(hand, wordList, n):
             break
 
         # Otherwise (the input is not a single period):
-        else
+        else:
             # If the word is not valid:
             if not isValidWord(guessed_word, hand, wordList):
                 # Reject invalid word (print a message followed by a blank line)
                 print('Invalid word, please try again.')
             # Otherwise (the word is valid):
-            else
+            else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
                 score += getWordScore(guessed_word, n)
                 print('"' + guessed_word + '"', 'earned', getWordScore(guessed_word, n), 'points.', 'Total:', score, 'points')
@@ -281,10 +281,23 @@ def playGame(wordList):
 
     2) When done playing the hand, repeat from step 1
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
+    current_hand = ''
 
+    while True:
+        user_decision = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
 
+        if user_decision is 'n':
+            current_hand = dealHand(HAND_SIZE)
+            playHand(current_hand, wordList, HAND_SIZE)
+        elif user_decision is 'r':
+            if current_hand is '':
+                print('You have not played a hand yet. Please play a new hand first!')
+            else:
+                playHand(current_hand, wordList, HAND_SIZE)
+        elif user_decision is 'e':
+            break
+        else:
+            print('Invalid command.')
 
 
 #
