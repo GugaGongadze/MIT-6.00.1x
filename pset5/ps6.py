@@ -138,7 +138,7 @@ class Message(object):
             if letter in string.punctuation or letter in string.digits:
                 shifted_text += letter
             else:
-                shifted_text += build_shift_dict(shift)[letter]
+                shifted_text += self.build_shift_dict(shift)[letter]
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -227,10 +227,6 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        cipher_words = self.message_text.split()
-        deciphered_text = ''
-
-
         shift_and_scores = {}
 
         for i in range (0, 27):
