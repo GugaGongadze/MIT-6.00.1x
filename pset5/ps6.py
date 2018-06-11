@@ -209,7 +209,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        super().__init__(text)
 
     def decrypt_message(self):
         '''
@@ -227,7 +227,32 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        cipher_words = self.message_text.split()
+        deciphered_text = ''
+
+
+        shift_and_scores = {}
+
+        for i in range (0, 27):
+          for word in self.apply_shift(26 - i).split():
+            if is_word(self.valid_words, word):
+              if i in shift_and_scores:
+                shift_and_scores[i] += 1
+              else:
+                shift_and_scores[i] = 1
+
+        max_value = 0
+        max_shift = 0
+        for shift in shift_and_scores:
+          if shift_and_scores[shift] > max_value:
+            max_value = shift_and_scores[shift]
+            max_shift = shift
+
+        if max_shift is 26:
+          best_shift = max_shift
+        else:
+          best_shift = 26 - max_shift
+        return (best_shift, self.apply_shift(best_shift))
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
